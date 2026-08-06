@@ -4,6 +4,8 @@ import pygame
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_RADIUS, LINE_WIDTH
 from logger import log_state
 
+from player import Player
+
 def main():
     pygame.init()
     clock = pygame.time.Clock()
@@ -18,6 +20,7 @@ def main():
         for event in pygame.event.get():
             pass
         screen.fill("black")
+        Player.draw(screen)
         pygame.display.flip()
 
         for event in pygame.event.get():
