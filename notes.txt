@@ -1,0 +1,28 @@
+Ah, welcome! Let's unspool these errors together.
+
+The immediate error you see (NameError: name 'screen' is not defined) happens because Python tries to execute pygame.draw.polygon(...) directly inside the body of the Player class as soon as the file is imported, long before any screen object is created!
+
+There are a few key structural issues in your player.py file to untangle:
+
+    Class Methods vs. Class Body: The triangle and draw methods should be separate methods defined on the Player class—not nested inside __init__ or sitting directly inside the class body.
+    Missing draw Method: Step 5 asks you to override the draw method that accepts screen as a parameter. pygame.draw.polygon(...) belongs inside this draw method!
+    pygame.draw.polygon Arguments: pygame.draw.polygon() takes a list of points as its third argument (e.g., self.triangle()), rather than passing individual point variables (a, b, c).
+    Instance Attributes: The self.rotation attribute should be initialized inside your __init__ method (e.g., self.rotation = 0).
+    Top-level Code: The instantiate lines at the bottom (x = ..., player_ch = ...) should be in your main.py file, not at the bottom of player.py.
+
+Take a look at how methods are defined inside a class:
+
+class ExampleShape:
+    def __init__(self, x, y):
+        # Initialize attributes here
+        self.rotation = 0
+
+    def draw(self, screen):
+        # Executed only when player.draw(screen) is explicitly called
+        pass
+
+    def triangle(self):
+        # Returns points
+        return []
+
+How might you restructure player.py so that draw is its own method taking screen as a parameter?

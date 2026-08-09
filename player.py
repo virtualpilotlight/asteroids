@@ -17,9 +17,11 @@ class Player(CircleShape):
             c = self.position - forward * self.radius + right
             return [a, b, c]
 
+        #test_tri = triangle
+
     rotation = 0
 
-    draw(screen, "white", a, b, c, LINE_WIDTH)
+    pygame.draw.polygon(screen, "white", a, b, c, LINE_WIDTH)
 
 x = SCREEN_WIDTH / 2
 y = SCREEN_HEIGHT / 2
