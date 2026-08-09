@@ -12,13 +12,17 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
+
+    player_ch = Player(x, y)
 
     while True:
         log_state()
         for event in pygame.event.get():
             pass
         screen.fill("black")
-        Player.draw(screen)
+        player_ch.draw(screen)
         pygame.display.flip()
 
         for event in pygame.event.get():
