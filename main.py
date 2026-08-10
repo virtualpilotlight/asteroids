@@ -1,4 +1,5 @@
 from sys import displayhook
+import threading
 import pygame
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_RADIUS, LINE_WIDTH
 from logger import log_state
@@ -15,6 +16,11 @@ def main():
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
 
+
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
     player_ch = Player(x, y)
 
     while True:
@@ -22,8 +28,9 @@ def main():
         for event in pygame.event.get():
             pass
         screen.fill("black")
-        player_ch.update(dt)
-        player_ch.draw(screen)
+        updatable.update(dt)
+        for thing in drawable:
+            thing.draw(screen)
         pygame.display.flip()
 
         for event in pygame.event.get():
