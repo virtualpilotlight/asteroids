@@ -29,7 +29,7 @@ class Player(CircleShape):
 
     def update(self, dt: float) -> None:
         keys = pygame.key.get_pressed()
-        #td = clock.tick(60) * 1000
+
         if keys[pygame.K_a]:
             self.rotate(-abs(dt))
         if keys[pygame.K_d]:

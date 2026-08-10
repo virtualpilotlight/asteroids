@@ -1,9 +1,12 @@
 from sys import displayhook
 import threading
 import pygame
+import asteroids
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_RADIUS, LINE_WIDTH
 from logger import log_state
 from player import Player
+from asteroids import Asteroid
+from asteroidfield import AsteroidField
 
 def main():
     pygame.init()
@@ -17,11 +20,15 @@ def main():
     y = SCREEN_HEIGHT / 2
 
 
+    asteroids = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
 
     player_ch = Player(x, y)
+    af = AsteroidField()
 
     while True:
         log_state()
