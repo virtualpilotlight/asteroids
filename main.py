@@ -22,6 +22,7 @@ def main():
         for event in pygame.event.get():
             pass
         screen.fill("black")
+        player_ch.update(dt)
         player_ch.draw(screen)
         pygame.display.flip()
 

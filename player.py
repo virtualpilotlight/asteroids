@@ -1,5 +1,8 @@
+from mimetypes import init
+
 import pygame
-from constants import PLAYER_RADIUS, LINE_WIDTH, SCREEN_WIDTH, SCREEN_HEIGHT
+from pygame.transform import rotate
+from constants import PLAYER_RADIUS, LINE_WIDTH, SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_TURN_SPEED
 from circleshape import CircleShape
 
 class Player(CircleShape):
@@ -21,10 +24,13 @@ class Player(CircleShape):
         pygame.draw.polygon(screen, "white", self.triangle(), LINE_WIDTH)
         return super().draw(screen)
 
+    def rotate(self, dt):
+        self.rotation += (PLAYER_TURN_SPEED * dt)
 
-    #pygame.draw.polygon(screen, "white", self.triangle(), LINE_WIDTH)
-
-x = SCREEN_WIDTH / 2
-y = SCREEN_HEIGHT / 2
-
-player_ch = Player(x, y)
+    def update(self, dt: float) -> None:
+        keys = pygame.key.get_pressed()
+        #td = clock.tick(60) * 1000
+        if keys[pygame.K_a]:
+            self.rotate(-abs(dt))
+        if keys[pygame.K_d]:
+            self.rotate(dt)
