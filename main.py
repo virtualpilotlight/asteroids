@@ -1,4 +1,5 @@
 from sys import displayhook
+import sys
 import threading
 import pygame
 import asteroid
