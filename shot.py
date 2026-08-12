@@ -1,9 +1,10 @@
+import pygame
 from circleshape import CircleShape
-from constantws import SHOT_RADIUS
+from constants import SHOT_RADIUS
 
 class Shot(CircleShape):
-    def __init__(self, x: float, y: float, SHOT_RADIUS: float) -> None:
-        super().__init__(x, y, radius)
+    def __init__(self, x: float, y: float) -> None:
+        super().__init__(x, y, SHOT_RADIUS)
 
     def draw(self, screen: pygame.Surface) -> None:
         return super().draw(screen)
