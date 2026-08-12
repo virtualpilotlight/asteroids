@@ -2,7 +2,7 @@ from mimetypes import init
 
 import pygame
 from pygame.transform import rotate
-from constants import PLAYER_RADIUS, LINE_WIDTH, SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_TURN_SPEED, PLAYER_SPEED, SHOT_RADIUS
+from constants import PLAYER_RADIUS, LINE_WIDTH, SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_TURN_SPEED, PLAYER_SPEED, SHOT_RADIUS, PLAYER_SHOOT_SPEED
 from circleshape import CircleShape
 from shot import Shot
 
@@ -51,3 +51,6 @@ class Player(CircleShape):
     def shoot(self):
         new_shot = Shot(self.x, self.y)
         velocity = pygame.Vector2(0, 1)
+        velocity = velocity.rotate(self.rotation)
+        velocity *= PLAYER_SHOOT_SPEED
+        new_shot.velocity = velocity
